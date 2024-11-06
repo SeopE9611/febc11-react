@@ -75,9 +75,9 @@
     // 한건의 Todo 객체를 받아서 DOM 객체로 만들어 반환
     function getTodoItemElem(item){
       // return (`
-      //   <li>
+      //   <li data-no="1">
       //     <span>1</span>
-      //     <span><s>샘플1</s></span>
+      //     <span onclick="toggleDone(1)"><s>샘플1</s></span>
       //     <button type="button">삭제</button>
       //   </li>
       // `);
@@ -134,6 +134,20 @@
       // </li>
       liElem.appendChild(deleteElem);
 
+      // <li data-no="1">
+      //   <span>1</span>
+      //   <span><s>샘플1</s></span>
+      //   <button type="button">삭제</button>
+      // </li>
+      liElem.setAttribute('data-no', item.no);
+
+      // <li data-no="1">
+      //   <span>1</span>
+      //   <span onclick="toggleDone(1)"><s>샘플1</s></span>
+      //   <button type="button">삭제</button>
+      // </li>
+      titleElem.setAttribute('onclick', `toggleDone(${ item.no })`);
+
       return liElem;
     }
 
@@ -171,7 +185,36 @@
 
     // 완료/미완료 처리
     function toggleDone(no){
+      // let selectedItem;
+      // itemList.forEach(item => {
+      //   if(item.no === no){
+      //     selectedItem = item;
+      //   }
+      // });
+      
+      // TODO: 데이터 갱신
+      let selectedItem = itemList.find(item => item.no === no);
+      selectedItem.done = !selectedItem.done;
 
+      // TODO: 화면 갱신
+      const selectedLiElem = document.querySelector(`.todolist > li[data-no="${ no }"]`);
+      // <li>
+      //   <span>2</span>
+      //   <span>샘플2</span>
+      //   <button type="button">삭제</button>
+      // </li>
+      const titleSpanElem = selectedLiElem.children[1];
+      if(selectedItem.done){
+        // <span>샘플2</span> -> <span><s>샘플2</s></span>
+        const sElem = document.createElement('s');
+        // <s>샘플2</s>
+        sElem.appendChild(titleSpanElem.firstChild);
+        titleSpanElem.appendChild(sElem);
+      }else{
+        // <span><s>샘플2</s></span> -> <span>샘플2</span>
+        titleSpanElem.appendChild(titleSpanElem.firstChild.firstChild);
+        titleSpanElem.firstChild.remove();
+      }
     }
 
     // 할일 삭제
