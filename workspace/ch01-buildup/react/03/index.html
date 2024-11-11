@@ -34,27 +34,26 @@
       );
     }
 
-    function TodoItem(){
+    function TodoItem({ item }){
       return (
         <li>
-          <span>1</span>
-          <span><s>샘플1</s></span>
+          <span>{ item._id }</span>
+          <span>{ item.done ? <s>{ item.title }</s> : item.title }</span>
           <button type="button">삭제</button>
         </li>
       );
     }
 
-    function TodoList(){
+    function TodoList({ itemList }){
+      const list = itemList.map(item => <TodoItem key={ item._id } item={ item } />);
       return (
         <ul className="todolist">
-          <TodoItem />
-          <TodoItem />
-          <TodoItem />
+          { list }
         </ul>
       );
     }
 
-    function Todo(){
+    function Todo(props){
       return (
         <div id="main">
           <div id="container">
@@ -62,7 +61,7 @@
               <li>
                 <h2>쇼핑 목록</h2>
                 <TodoInput />
-                <TodoList />
+                <TodoList itemList={ props.itemList } />
               </li>
             </ul>
           </div>
@@ -89,7 +88,7 @@
       return (
         <div id="todo">
           <Header />
-          <Todo />
+          <Todo itemList={ itemList } />
           <Footer />
         </div>
       );
