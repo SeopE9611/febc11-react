@@ -34,6 +34,7 @@ export default [
         { allowConstantExport: true },
       ],
       "no-unused-vars": 1, //경고 지우기
+      "react/prop-types": 1,
     },
   },
 ];
