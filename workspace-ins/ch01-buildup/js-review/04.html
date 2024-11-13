@@ -67,13 +67,42 @@
     // 3. 삼항 연산자 중첩
     function App3(){
       var status = 'online';
-      // var status = 'away';
+      var status = 'away';
+
+      // return (
+      //   <>
+      //     { status === 'online' ? <h1>온라인 상태</h1> :  status === 'away' ? <h1>자리 비움 상태</h1> : <h1>오프라인 상태</h1> }
+      //   </>
+      // );
+
+      // if (status === "online") {
+      //   return <h1>온라인</h1>;
+      // } else if (status === "away") {
+      //   return <h1>자리비움</h1>;
+      // } else if (status === "offline") {
+      //   return <h1>오프라인</h1>;
+      // }
+
+      let statusText;
+      switch(status){
+        case 'online':
+          statusText = '온라인 상태';
+          break;
+        case 'away':
+          statusText = '자리 비움 상태';
+          break;
+        default:
+          statusText = '오프라인 상태';
+      }
 
       return (
         <>
-          
+          <h1>{ statusText }</h1>
         </>
       );
+
+
+      
     }
 
     // 4. 조건부 클래스 적용
@@ -83,7 +112,7 @@
 
       return (
         <>
-          
+          <button className={ isActive ? 'active' : 'inactive' }>{ isActive ? '클릭' : '기다려' }</button>
         </>
       );
     }
@@ -91,13 +120,19 @@
     // 5. 조건에 따라 요소를 생성하지 않기
     function App5(){
       var isShow = false;
-      // var isShow = true;
-
+      var isShow = true;
+        
       return (
         <>
-          
+          { isShow ? <p>이곳에 보여줌</p> : null }
         </>
       );
+
+      // return (
+      //   <>
+      //     { isShow && <p>이곳에 보여줌</p> }
+      //   </>
+      // );
     }
 
     function App(){
