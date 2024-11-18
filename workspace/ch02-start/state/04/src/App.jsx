@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EditAddress from "./components/EditAddress";
-
+import {produce} from 'immer'
 // 회원 정보 
 function App() {
 
@@ -31,7 +31,56 @@ function App() {
     }
   });
 
-  const handleAddressChange = event => {}
+  const handleAddressChange = event => {
+    // 상태의 불변성이 지켜지지 않음
+    // const address = user.extra.addressBook.find(address=>address.id === Number(event.target.name));
+    // address.value = event.target.value
+    // const newState ={...user} //전개연산자
+
+//===============================================================================
+    // 상태의 불변성을 지키기 위해 복잡한 추가 작업 필요
+    // 그나마 주소를 바꾼다는 전제이기 때문에 덜 복잡힘
+    // const newAddressBook = user.extra.addressBook.map(address => {
+    //   if(address.id === Number(event.target.name)){
+    //     return{...address,value: event.target.value};
+    //   }else{
+    //     return address;
+    //   }
+    // })
+
+    // const newState = {
+    //   ...user,
+    //   extra: {
+    //     ...user.extra,
+    //     addressBook: newAddressBook
+    //   }
+    // }
+//==============================================================================
+// immer를 사용해서 불변성 유지
+// user를 복사한 샐로운 객체를만들어서 반환
+const newState = produce(user, draft => {
+  console.log(user);
+  console.log(draft);
+  const address = draft.extra.addressBook.find(address => address.id === Number(event.target.name));
+  address.value = event.target.value;
+});
+
+
+
+
+
+    // 회사 주소가 변경될 경우
+    console.log('user', user === newState); //false
+    console.log('user.extra', user.extra === newState.extra); //false
+    console.log('user.extra.addressBook', user.extra.addressBook === newState.extra.addressBook);
+    console.log('회사', user.extra.addressBook[0] === newState.extra.addressBook[0]); // false
+    console.log('집', user.extra.addressBook[1] === newState.extra.addressBook[1]); //true
+    console.log('회사 주소', user.extra.addressBook[0].value === newState.extra.addressBook[0].value); //false
+    console.log('집 주소', user.extra.addressBook[1].value === newState.extra.addressBook[1].value);
+    console.log('기존 회사 주소', user.extra.addressBook[0].value);
+
+    setUser(newState)
+  }
   return(
     <>
       <h2>04 상태관리 대상이 복함 객체일 경우 불변성 관리</h2>
