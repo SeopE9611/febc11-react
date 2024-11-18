@@ -11,6 +11,8 @@ const cellphoneExp = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
 
 function App() {
 
+  
+
   // const [name, setName] = useState('');
   // const [email, setEmail] = useState('');
   // const [cellphone, setCellphone] = useState('010');
@@ -94,7 +96,7 @@ function App() {
 
   return (
     <>
-      <h1>05 회원가입 입력값 상태 관리</h1>
+      <h1>06 회원가입 입력값 검증</h1>
 
       <form onSubmit={ onSubmit }>
         <label htmlFor="name">이름</label>
