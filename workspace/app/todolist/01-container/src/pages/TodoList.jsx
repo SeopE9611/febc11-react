@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import TodoItem from "@pages/TodoItem";
 
 function TodoList({ itemList, toggleDone, deleteItem }){
