@@ -12,6 +12,10 @@ const cellphoneExp = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
 function App() {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    // useForm의 검증 설정을 다르게 하고 싶을 경우 여기에 수정
+    mode: 'onSubmit', //컨트롤 스페이스 = 기본값 onSubmit - 최초 검증하는 시점 
+    reValidateMode: 'onChange', //재검증 시점 - 기본값 onChange
+    criteriaMode:'firstError', // 에러객체에 첫 오류 한 개만 포함하거나 (firstError), 전부 포함 (all), 기본값 firstError
     defaultValues: {
       name: '',
       email: '',
@@ -24,6 +28,8 @@ function App() {
     console.log('서버에 전송', user);
   };
 
+  console.log(errors);
+  
   return (
     <>
       <h1>06 회원가입 입력값 검증 (feat. react-hook-form)</h1>
@@ -37,6 +43,10 @@ function App() {
             minLength: {
               value: 2,
               message: '2글자 이상 입력하세요.'
+            },
+            pattern:{ //이름에 숫자를 입력못하게 할 때
+              value: /^[^\d]*$/, // 숫자는 포함할수 없음
+              message: '숫자는 입력할 수 없습니다.'  //criteriaMode 에서 결정
             }
           }) }
         /><br/>
