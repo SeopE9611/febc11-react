@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Button from "./Button";
 import PropTypes from "prop-types";
 
@@ -8,66 +8,22 @@ Counter.propTypes ={
 
 function Counter({children = '0'}){
   const initCount = Number(children) // 형 변환
-  const [count, setCount] = useState(initCount);
+
+
+  // const [count, setCount] = useState(initCount);
+  const [count, countDispatch] = useReducer(counterReducer, initCount)
   const [step, setStep] = useState(1)
 
   const handleDown = () => {
-    setCount(count - step);
+    countDispatch({type:'Down', value: step})
   };
   const handleUp = () => {
-    setCount(count + step);
+    countDispatch({type:'Up', value: step})
   };
   const handleReset = event => {
-    setCount(initCount);
+    countDispatch({type:'Reset', value: initCount})
   };
-
-// 1초 후에 자동으로 값 한번 증가 useEffect
-// 증가 시키고 싶었는데 무한 렌더링 발생
-  // setTimeout(()=> {
-  //   handleUp();
-  // },1000);
-  // console.log('1초에 한번씩 Couter 랜더링');
-
-  // mount 된 후에 최초 한번만 값 증가
-  // useEffect(()=> {
-  //   setTimeout(()=> {
-  //     handleUp();
-  //   },1000);
-  //        // dependencies에 빈 배열을 지정하면 컴포넌트가 마운트 된 후에 한번만 호출됨(업데이트 후 호출 X)
-  // }, []) // 만약 dependencies 지정하지 않으면 ([]배열 삭제) 컴포넌트가 마운트 된 후와 업데이트 된 후에 호출 됨 (또다시 무한 루트)
-
-  // useEffect(()=> {
-  //   setTimeout(()=> {
-  //     handleUp();
-  //   },1000);
-  //        // dependencies에 값을 지정하면 컴포넌트가 업데이트 될 때 지정한 값중 하나라도 수정되었을 경우 호출됨 
-  // }, [step]) // 즉 증감치를 올릴 경우 증가함
-
-  // useEffect(()=> {
-  //   console.log('setup 함수 호출.');
-  //   setInterval(()=>{
-  //     console.log(step,new Date());
-  //   },1000)
-  // },[step]) //dependencies 를 추가하여 step이 바뀔경우 콘솔의 step도 올라가게 출력
-
-  // useEffect(()=> {
-  //   console.log('setup 함수 호출.');
-  //   const timer = setInterval(()=>{
-  //     console.log(step,new Date());
-  //   },1000)
-
-  //   //cleanup 사용하여 이전 숫자 삭제하고 증감치 값을 가지고 호출
-  //   return () => {
-  //     console.log(step,'clenup 함수 호출.');
-  //     clearInterval(timer)
-  //   }
-  // },[step]) 
-
-  // useEffect(()=> {
-  //   console.log('setup 함수 호출.');
-  // },[step]) //step 바꿀 떄마다 setup 호출
-
-  //main.jsx 에 StrictMode 사용한 이유
+  
     useEffect(()=> {
     console.log('setup 함수 호출.');
     const timer = setInterval(()=>{
@@ -93,4 +49,29 @@ function Counter({children = '0'}){
   );
 }
 
+// 현재 상태와 action 객체를 받아서 새로운 상태를 반환하는 순수 함수 - Reducer
+// 로직은 컴포넌트 내부에서 직접 구현 하는게 아닌 외부에서 구현
+// state: 이전 상태(useReducer 가 내부적으로 관리, 이전의 리턴값이 다음의 state로 전달)
+// action: 동작을 정의한 객체(자유롭게 작성. 일반적으로 type 속성에 동작을, value 속성에 값을 지정)
+// 리턴값: 새로운 상태
+function counterReducer(state, action){ // (5, { type: 'Down', value : 3})
+  let newState;
+
+  switch(action.type){
+    case 'Down':
+      newState = state - action.value;
+      break
+    case 'Up':
+      newState = state + action.value;
+      break
+    case 'Reset':
+      newState = action.value;
+      break
+    default:
+      newState = state;
+
+  }
+
+  return newState;
+}
 export default Counter;
