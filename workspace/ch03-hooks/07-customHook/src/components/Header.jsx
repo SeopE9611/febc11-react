@@ -1,7 +1,7 @@
 function Header(){
   return (
     <header>
-      <h1>Todo List - 03 TodoItem 메모이제이션 :()</h1>
+      <h1>07 customHook - useCounter 커스텀 훅 사용</h1>
     </header>
   );
 }

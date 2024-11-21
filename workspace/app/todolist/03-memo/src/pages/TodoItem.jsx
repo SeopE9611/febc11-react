@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
-function TodoItem({ item, toggleDone, deleteItem }){
+import { memo } from "react";
+
+// TODO: 1. React.memo로 컴포넌ㅌㅌ트를 메모이제이션
+const TodoItem= memo(function TodoItem({ item, toggleDone, deleteItem }){
   return (
     <li>
       <span>{ item._id }</span>
@@ -7,7 +10,7 @@ function TodoItem({ item, toggleDone, deleteItem }){
       <button type="button" onClick={ () => deleteItem(item._id) }>삭제</button>
     </li>
   );
-}
+})
 
 TodoItem.propTypes ={
   // item: PropTypes.object.isRequired, //이렇게하거나 아니면
