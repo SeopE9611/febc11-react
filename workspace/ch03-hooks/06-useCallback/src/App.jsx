@@ -16,6 +16,7 @@ function App() {
 
   const {quantity, setQuantity} = useState(1); //수량이 변경되면 상품금액이 변경되어야함
   const {shippingFees, setshippingFees} = useState(data.shippingFees); //수량이 변경되면 배송금액이 변경되어야함
+  const productPrice = data.price * quantity;
 
   //수량이 변경되면 배송비 다시 계산
   const handleQuantityChange = (e) => {
@@ -34,18 +35,18 @@ function App() {
 
       <h1>06 useCallback(함수 자체를 memoize), React.memo(컴포넌트를 memoize)</h1>
       
-      <Product/>
+      <Product name ={ data.name } price = {data.price} mainImage={data.mainImage} content={data.content}/>
 
       <h2>수량 선택</h2>
       <div>
         가격: {data.price.toLocaleString()}원<br/>
-        수량: <input type="number" min="1" max={data.quantity - data.buyQuantity} value="1" 
-        onChange={handleQuantityChange}/>
+        수량: <input type="number" min="1" max={data.quantity - data.buyQuantity} 
+        value={quantity} onChange={handleQuantityChange}/>
         (배송비는 5개당 {data.shippingFees.toLocaleString()}원씩 추가됩니다.)<br/>
-        상품 금액: {data.price.toLocaleString()}원
+        상품 금액: {productPrice.toLocaleString()}원
       </div>
 
-      <Shipping handlePayment={handlePayment}/> 
+      <Shipping fees={shippingFees} handlePayment={handlePayment}/> 
     </>
   )
 }
