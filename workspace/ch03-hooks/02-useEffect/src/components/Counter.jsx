@@ -57,14 +57,14 @@ function Counter({ children = '0' }){
   // }, [step]);
 
 
-  useEffect(() => {
+  useEffect(() => { //setup
     console.log('setup 함수 호출.');
     const timer = setInterval(() => {
       console.log(new Date());
     }, 1000);
     return () => {
       clearInterval(timer);
-    };
+    }; //cleanup
   }, []);
 
   // useEffect(() => {
