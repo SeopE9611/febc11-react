@@ -12,6 +12,8 @@ function useCounter(initCount) {
   const handleReset = (num) => {
     setCount(num);
   };
+
+  return { count, down: handleDown, up: handleUp, reset: handleReset };
 }
 
 export default useCounter;
