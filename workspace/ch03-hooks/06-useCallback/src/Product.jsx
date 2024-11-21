@@ -1,15 +1,11 @@
 import PropTypes from "prop-types"
 import { memo } from "react"
 
-Product.prototype = {
-  name:PropTypes.string.isRequired,
-  price:PropTypes.number.isRequired,
-  mainImage:PropTypes.string.isRequired,
-  content:PropTypes.string.isRequired,
-}
-
 const Product = memo(function Product ({name, price, mainImage, content}) {
+// function Product ({name, price, mainImage, content}) {
   //복잡한 로직
+  console.log('Product랜더링:');
+  
   return(
     <>
       <h2>상품 설명</h2>
@@ -22,8 +18,16 @@ const Product = memo(function Product ({name, price, mainImage, content}) {
       </div>
     </>
   )
+  // }
 })
 
+
+Product.prototype = {
+  name:PropTypes.string.isRequired,
+  price:PropTypes.number.isRequired,
+  mainImage:PropTypes.string.isRequired,
+  content:PropTypes.string.isRequired,
+}
 
 
 export default Product
