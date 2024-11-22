@@ -6,9 +6,9 @@ function Header() {
       <header>
         <h1>리액트 라우터 - 02 리액트 라우터 사용</h1>
 
-        <NavLink className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' } to="/">Home</NavLink>
-        <NavLink className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' } to="/page1">About</NavLink>
-        <NavLink className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' } to="/page2">TodoList</NavLink>
+        <NavLink className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' } to="/home">Home</NavLink>
+        <NavLink className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' } to="/page1">Page1</NavLink>
+        <NavLink className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' } to="/page2">Page2</NavLink>
 
 
         {/* <Link to="/">home</Link>
