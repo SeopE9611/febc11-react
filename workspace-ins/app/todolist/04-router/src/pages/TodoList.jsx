@@ -9,6 +9,7 @@ const dummyData = {
   }, {
     _id: 2,
     title: '자바스크립트 복습',
+    done: true,
   }]
 };
 
@@ -20,7 +21,22 @@ function TodoList() {
     setData(dummyData);
   }, []); // 마운트된 후에 한번만 호출
 
-  const itemList = data?.items.map(item => <TodoListItem key={ item._id } item={ item } />);
+  // 삭제 작업
+  const handleDelete = (_id) => {
+    try{
+      // TODO: API 서버에 삭제 요청
+  
+      alert('할일이 삭제 되었습니다.');
+
+      // TODO: 목록을 다시 조회
+
+    }catch(err){
+      console.error(err);
+      alert('할일 삭제에 실패했습니다.');
+    }
+  };
+
+  const itemList = data?.items.map(item => <TodoListItem key={ item._id } item={ item } handleDelete={ handleDelete } />);
 
   return (
     <div id="main">
@@ -33,21 +49,7 @@ function TodoList() {
           <button type="submit">검색</button>
         </form>
         <ul className="todolist">
-          <li>
-            <span>1</span>
-            <Link to="/list/1">잠자기</Link>
-            <Link to="/list">삭제</Link>
-          </li>
-          <li>
-            <span>2</span>
-            <Link to="/list/2">자바스크립트 복습</Link>
-            <Link to="/list">삭제</Link>
-          </li>
-          <li>
-            <span>3</span>
-            <Link to="/list/3"><s>리액트 과제 하기</s></Link>
-            <Link to="/list">삭제</Link>
-          </li>
+          { itemList }
         </ul>
       </div>
 

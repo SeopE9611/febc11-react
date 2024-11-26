@@ -5,16 +5,17 @@ TodoListItem.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    done: PropTypes.bool.isRequired,
+    done: PropTypes.bool,
   }),
+  handleDelete: PropTypes.func.isRequired,
 };
 
-function TodoListItem({ item }) {
+function TodoListItem({ item, handleDelete }) {
   return (
     <li>
       <span>{ item._id }</span>
-      <Link to={`/list/${ item._id }`}>{ item.done ? <s>${ item.title }</s> : item.title }</Link>
-      <Link to="/list">삭제</Link>
+      <Link to={`/list/${ item._id }`}>{ item.done ? <s>{ item.title }</s> : item.title }</Link>
+      <button type="button" onClick={ () => handleDelete(item._id) }>삭제</button>
     </li>
   );
 };
