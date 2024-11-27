@@ -36,6 +36,7 @@ function TodoDetail() {
     const res = await axios.get(`/todolist/${_id}`);
     setData(res.data);
   };
+
   useEffect(() => {
     fetchDetail();
   }, []); // 마우트될 때 한번만 호출
