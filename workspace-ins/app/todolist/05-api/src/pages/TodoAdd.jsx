@@ -9,7 +9,6 @@ function TodoAdd() {
   const onSubmit = (item) => {
     console.log('서버에 전송', item);
 
-
     const timer = setTimeout(() => {
       xhr.abort(); // 요청 취소
     }, 2000);
