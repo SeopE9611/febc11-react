@@ -83,7 +83,7 @@ function TodoList() {
     // keyword=환승&page=2
     // keyword=환승&page=3
     let search = searchParams.toString();
-    pageList.push(<li className={ current === page ? 'active' : '' }><Link to={`/list?${search}`}>{page}</Link></li>);
+    pageList.push(<li key={page} className={ current === page ? 'active' : '' }><Link to={`/list?${search}`}>{page}</Link></li>);
   }
 
   return (
