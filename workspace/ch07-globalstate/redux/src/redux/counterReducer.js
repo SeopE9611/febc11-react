@@ -2,7 +2,7 @@ import { COUNTER_ACTION } from "@redux/counterActionCreator";
 import { cloneElement } from "react";
 
 // 초기 상태
-const initialState = { count: 0, hello: "world" };
+const initialState = { count: 5 };
 
 // 현재 상태와 action 객체를 받아서 새로운 상태를 반환하는 순수 함수
 // state: 이전 상태(store가 내부적으로 관리 이전의 리턴 값이 다음의 state로 전달)
