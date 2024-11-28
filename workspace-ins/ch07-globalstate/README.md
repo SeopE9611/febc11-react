@@ -14,7 +14,7 @@
 
 ### 전역 상태 관리 라이브러리
 - 대표적인 라이브러리:
-  - Redux, Context API, Recoil, Zustand, MobX, Jotai, Valtio 등.
+  - Redux, MobX, Context API, Recoil, Zustand, Jotai, Valtio 등.
 - 각 라이브러리는 상태 관리 방식, 성능 최적화, 사용 편의성에서 차이를 가짐.
 
 ### 전역 상태 관리 사용 사례
