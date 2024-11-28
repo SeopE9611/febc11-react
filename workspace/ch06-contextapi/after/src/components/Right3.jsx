@@ -7,13 +7,14 @@ function Right3() {
     console.log('      # Right3 렌더링.');
   });
 
-  const simple = useContext(SimpleContext); // main.jsx
+  const simple = useContext(SimpleContext);
 
-  // CounterCoontext 국동함 (CounterContext의 상태변경이 리렌더링을 유발함)
-  const {actions: {countDown, reset, countUp }} = useContext(CounterContext) //CounterContext.jsx
+  // CounterContext 구독함(CounterContext의 상태변경이 리렌더링을 유발함)
+  const { actions: { countDown, reset, countUp } } = useContext(CounterContext);
+
   return (
     <div>
-      <h3>Right3 - {simple.hello}</h3>
+      <h3>Right3 - { simple.hello }</h3>
       <button onClick={ () => countDown(1) }>-1</button>
       <button onClick={ () => reset() }>0</button>
       <button onClick={ () => countUp(1) }>+1</button>
