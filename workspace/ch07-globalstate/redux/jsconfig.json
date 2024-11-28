@@ -7,11 +7,10 @@
       "@pages/*": ["pages/*"],
       "@hooks/*": ["hooks/*"],
       "@context/*": ["context/*"],
-      "@redux/*": ["redux/*"],
+      "@redux/*": ["redux copy/*"],
       "@redux-toolkit/*": ["redux-toolkit/*"],
       "@recoil/*": ["recoil/*"],
       "@zustand/*": ["zustand/*"],
-    
     }
   }
 }
