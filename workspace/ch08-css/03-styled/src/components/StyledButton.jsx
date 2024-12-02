@@ -15,9 +15,21 @@ const BasicButtonStyle = styled.button`
   border-radius: 6px; /* Border radius */
 `;
 
+const BlueButton = styled(BasicButtonStyle)`
+  background-color:blue;
+`;
+
 Button.propTypes = {
   children: PropTypes.string.isRequired,
 }
+
+Submit.propTypes = {
+  children: PropTypes.string.isRequired,
+}
+
 export function Button({children, ...rest}){ //Rest 파라미터의 ...rest에는 type='button', bg, color, onClick:clickHandler 들어감
   return <BasicButtonStyle type='button'{...rest}>{children}</BasicButtonStyle>
+}
+export function Submit({children, ...rest}){ //Rest 파라미터의 ...rest에는 type='button', bg, color, onClick:clickHandler 들어감
+  return <BlueButton type='submit'{...rest}>{children}</BlueButton>
 }
