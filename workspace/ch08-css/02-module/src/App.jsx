@@ -3,7 +3,7 @@ import Button from './components/Button';
 import styles from './App.module.css';
 
 // 첫번째 방법 : import 해서 css 사용
-// 클래스 충돌해결하기 위해 module
+// 클래스 충돌해결하기 위해 module css
 function App(){
   console.log(styles);
   
