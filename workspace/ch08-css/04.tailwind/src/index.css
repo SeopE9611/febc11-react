@@ -1,3 +1,24 @@
-@tailwind base;
-@tailwind components;
+@tailwind base; /* HTML 태그의 기본 스타일을 정의 */
+@tailwind components; /* */
 @tailwind utilities;
+
+/* Tailwiwnd CSS의 base, components, utilities 레이어 중에 base 레이어를 재정의 */
+@layer base {
+  h1 {
+    @apply mb-6 text-2xl font-bold; /* h1 기본 스타일 지정 */
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-gray-500 text-white font-semibold px-2 py-1 ml-2 text-base hover:bg-blue-600 rounded;
+  }
+
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-700;
+  }
+
+  .btn-warn {
+    @apply bg-red-500 hover:bg-red-700;
+  }
+}
