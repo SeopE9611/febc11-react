@@ -28,13 +28,17 @@ function useAxiosInstance() {
     (response) => {
       // 2xx 범위에 있는 상태 코드는 이 함수가 호출됨
       // 응답 데이터를 이용해서 필요한 공통 작업 수행
+      if (response.data?.ok !== undefined) {
+        response.data.ok = !!response.data?.ok;
+      }
+      console.error("인터셉터", response);
 
       return response;
     },
     (error) => {
       // 2xx 외의 범위에 있는 상태 코드는 이 함수가 호출됨
       // 공통 에러 처리
-
+      console.log("인터셉터 에러", error);
       return Promise.reject(error);
     }
   );
