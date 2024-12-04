@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Product from "./Product";
 import Shipping from "./Shipping";
-import {BounceLoader} from 'react-spinners'
+import { BounceLoader, DotLoader } from 'react-spinners';
 import useAxiosInstance from "@hooks/useAxiosInstance";
+import { Slide, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   console.log('App 렌더링.');
@@ -23,7 +25,7 @@ function App() {
 
     try { //try catch를 활용한 에러 체크
       // const res = await axios.get(`/products/${_id}`,{params:{delay:1000}}) // 1초
-       const res = await axios.get(`/products/${_id}`) // 2초 - useAxiosInstance config params에서 2초 설정
+       const res = await axios.get(`/prodsdfucts/${_id}`) // 2초 - useAxiosInstance config params에서 2초 설정
       console.log('res',res);
       
         setData(res.data.item) // 4번 - 화면 갱신 (마운트 후)
@@ -40,9 +42,9 @@ function App() {
     
   };
 
-  useEffect(()=>{
-    fetchData(5); // 3번 - 마운트 후
-  },[]); // 마운트 된 이후에 최초 한번만 실행
+  useEffect(() => {
+    fetchData(7); // 3번(마운트 후)
+  }, []); // 마운트 된 이후에 최초 한번만 실행
 
   // 여기까지 매번 작성하게 될 내용
 
@@ -82,6 +84,19 @@ function App() {
           <Shipping fees={ shippingFees } handlePayment={ handlePayment } />
       </div>
       )}
+      <ToastContainer 
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Slide}
+      />
     </>
   );
 }

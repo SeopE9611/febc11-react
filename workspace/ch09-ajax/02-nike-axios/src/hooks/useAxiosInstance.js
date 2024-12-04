@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function useAxiosInstance() {
   const instance = axios.create({
@@ -14,11 +15,10 @@ function useAxiosInstance() {
   // 요청 인터셉터 추가하기
   instance.interceptors.request.use((config) => {
     // 요청이 전달되기 전에 필요한 공통 작업 수행
-    console.log("config 객체", config);
+    console.log(config);
     config.params = {
-      // config의 params를 새롭게 정의
       delay: 2000,
-      ...config.params, // 기존 퀴리스트링 복사
+      ...config.params, // 기존 쿼리스트링 복사
     };
     return config;
   });
@@ -29,16 +29,19 @@ function useAxiosInstance() {
       // 2xx 범위에 있는 상태 코드는 이 함수가 호출됨
       // 응답 데이터를 이용해서 필요한 공통 작업 수행
       if (response.data?.ok !== undefined) {
-        response.data.ok = !!response.data?.ok;
+        response.data.ok = !!response.data.ok; // 0 => false, 1 => true
       }
-      console.error("인터셉터", response);
-
+      console.log("인터셉터", response);
       return response;
     },
     (error) => {
       // 2xx 외의 범위에 있는 상태 코드는 이 함수가 호출됨
       // 공통 에러 처리
-      console.log("인터셉터 에러", error);
+      console.error("인터셉터", error);
+      const message = "잠시 후 다시 요청하세요.";
+      // alert(message);
+      // error.message = message;
+      toast.error(message);
       return Promise.reject(error);
     }
   );
