@@ -16,7 +16,7 @@ function App() {
   const [error, setError] = useState(null)
 
   //로딩
-  const [isLoadig, setIsLoadig] = useState(false);
+  const [isLoading, setIsLoadig] = useState(false);
 
   const axios = useAxiosInstance();
 
@@ -68,7 +68,7 @@ function App() {
   return (
     <>
       <h1>02 - Nike 상품 상세 조회 - Axios</h1>
-      {isLoadig && <BounceLoader/>}
+      {isLoading && <BounceLoader/>}
       {error && <p>{error.message}</p>}
       {data && (
         <div>
