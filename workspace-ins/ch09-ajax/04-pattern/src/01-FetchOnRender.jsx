@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 // 게시글 조회 API 호출
 function fetchPost(){
-  return axios.get('https://11.fesp.shop/posts/1', {
+  return axios.get('https://11.fesp.shop/posts/1?delay=3000', {
     headers: {
       'client-id': '00-brunch'
     }
@@ -34,7 +34,7 @@ function FetchOnRender(){
 
 // 댓글 목록 조회 API 호출
 function fetchReplies(){
-  return axios.get('https://11.fesp.shop/posts/1/replies', {
+  return axios.get('https://11.fesp.shop/posts/1/replies?delay=2000', {
     headers: {
       'client-id': '00-brunch'
     }
