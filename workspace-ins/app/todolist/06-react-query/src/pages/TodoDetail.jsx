@@ -13,7 +13,7 @@ function TodoDetail() {
 
   const axios = useAxiosInstance();
 
-  const { data, refetch, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['todolist', _id],
     queryFn: () => axios.get(`/todolist/${_id}`),
     select: res => res.data,
@@ -38,7 +38,7 @@ function TodoDetail() {
             <button type="button" onClick={ () => navigate(-1) }>목록</button>
           </div>
 
-          <Outlet context={{ item: data.item, refetch }} />
+          <Outlet context={{ item: data.item }} />
         </>
       ) }
 
