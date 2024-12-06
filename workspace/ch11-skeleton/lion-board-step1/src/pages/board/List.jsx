@@ -42,8 +42,8 @@ export default function List() {
           </thead>
           <tbody>
 
-            <ListItem/>
-
+            <ListItem />
+            
           </tbody>
         </table>
         <hr />

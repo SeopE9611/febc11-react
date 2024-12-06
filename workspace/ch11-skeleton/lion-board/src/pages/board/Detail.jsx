@@ -23,8 +23,7 @@ export default function Detail() {
         </form>
       </section>
       
-      <CommentList/>
-
+      <CommentList />
 
     </main>
   );
