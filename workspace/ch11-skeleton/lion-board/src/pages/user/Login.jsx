@@ -17,16 +17,15 @@ export default function Login() {
     onSuccess: (res) => {
       console.log(res);
 
-
       // 회원정보 저장
-      const user = res.data.item
-      setUser ({
+      const user = res.data.item;
+      setUser({
         _id: user._id,
         name: user.name,
         profile: user.image?.path,
         accessToken: user.token.accessToken,
-        refreshToken: user.token.refreshTokene,
-      })
+        refreshToken: user.token.refreshToken,
+      });
 
       alert(res.data.item.name + '님, 로그인 되었습니다.');
       navigate(`/`);
