@@ -10,7 +10,12 @@ export default function Login() {
   const setUser = useUserStore(store => store.setUser);
 
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors }, setError } = useForm();
+  const { register, handleSubmit, formState: { errors }, setError } = useForm({
+    defaultValues: {
+      email:'pplo23@gmail.com',
+      passwword:'qwerqwer',
+    }
+  });
   const axios = useAxiosInstance();
   const login = useMutation({
     mutationFn: formData => axios.post(`/users/login`, formData),
