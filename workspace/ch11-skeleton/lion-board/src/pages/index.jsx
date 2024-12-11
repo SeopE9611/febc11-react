@@ -18,7 +18,7 @@ export default function MainPage() {
             <Link to="/info" className="text-orange-500 hover:underline">바로가기</Link>
           </div>
           <div className="bg-white p-6 rounded shadow dark:bg-gray-800">
-            <h3 className="text-xl font-bold mb-2">자유 게시판</h3>
+            <h3 className="text-xl font-bold mb-2">자유 게시판</h3>     
             <p className="mb-4">자유롭게 이야기를 나누세요.</p>
             <Link to="/free" className="text-orange-500 hover:underline">바로가기</Link>
           </div>
