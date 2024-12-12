@@ -5,16 +5,17 @@ import { HelmetProvider } from "react-helmet-async";
 
 function App() {
 
-  const {isDarkMode} = useThemeStore();
+  const { isDarkMode } = useThemeStore();
 
   if(isDarkMode){
-    document.documentElement.classList.add('dark')
+    document.documentElement.classList.add('dark');
   }else{
-    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.remove('dark');
   }
+  
   return (
     <HelmetProvider>
-    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+      <RouterProvider router={router} future={{ v7_startTransition: true }} />
     </HelmetProvider>
   );
 }

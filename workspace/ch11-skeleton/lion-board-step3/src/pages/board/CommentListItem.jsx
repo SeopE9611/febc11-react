@@ -8,9 +8,9 @@ CommentListItem.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.number.isRequired,
     user: PropTypes.shape({
+      _id: PropTypes.number,
       name: PropTypes.string,
       image: PropTypes.object,
-      _id:PropTypes.number,
     }).isRequired,
     content: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
@@ -18,8 +18,8 @@ CommentListItem.propTypes = {
 };
 export default function CommentListItem({ item }) {
 
-  const {user} = useUserStore(); // 로그인한 사용자 정보 꺼내오기
-  
+  const { user } = useUserStore();
+
   const queryClient = useQueryClient();
   const axios = useAxiosInstance();
   const { _id } = useParams();
@@ -47,7 +47,9 @@ export default function CommentListItem({ item }) {
       <div className="flex justify-between items-center mb-2">
         <pre className="whitespace-pre-wrap text-sm">{ item.content }</pre>
 
-        {(user?._id === item.user._id) && <button type="button" onClick={ () => removeItem.mutate(_id) } className="bg-red-500 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">삭제</button>}
+        { (user?._id === item.user._id) && 
+          <button type="button" onClick={ () => removeItem.mutate(_id) } className="bg-red-500 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">삭제</button>
+        }
         
       </div>
     </div>

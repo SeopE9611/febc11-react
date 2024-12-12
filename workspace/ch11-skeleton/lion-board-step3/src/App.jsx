@@ -4,13 +4,14 @@ import useThemeStore from "@zustand/themeStore";
 
 function App() {
 
-  const {isDarkMode} = useThemeStore();
+  const { isDarkMode } = useThemeStore();
 
   if(isDarkMode){
-    document.documentElement.classList.add('dark')
+    document.documentElement.classList.add('dark');
   }else{
-    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.remove('dark');
   }
+  
   return (
     <RouterProvider router={router} future={{ v7_startTransition: true }} />
   );
