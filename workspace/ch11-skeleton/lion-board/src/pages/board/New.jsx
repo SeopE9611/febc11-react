@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import InputError from "@components/InputError";
+import { Helmet } from "react-helmet-async";
 
 export default function New() {
 
@@ -35,6 +36,12 @@ export default function New() {
   });
 
   return (
+    <>
+          <Helmet>
+            <title>{ } - 멋사컴</title>
+            <meta property="og:title" content="게시글 등록" />
+            <meta property="og:description" content="게시글을 등록하세요." />
+          </Helmet>
     <main className="min-w-[320px] p-4">
       <div className="text-center py-4">
         <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-200">게시글 등록</h2>
@@ -71,5 +78,6 @@ export default function New() {
         </form>
       </section>
     </main>
+    </>
   );
 }
