@@ -1,11 +1,15 @@
 import Link from "next/link";
 
-export default function Page() {
+export default async function Page({ params }) {
+  // const { type } = params; // Next.js 14
+  // Next.js 15에서 params가 Promise로 전달됨
+  const { type } = await params;
+
   return (
     <>
       <main className="min-w-80 p-10">
         <div className="text-center py-4">
-          <h2 className="pb-4 text-2xl font-bold text-gray-700 dark:text-gray-200">정보 공유</h2>
+          <h2 className="pb-4 text-2xl font-bold text-gray-700 dark:text-gray-200">{ type } 게시판</h2>
         </div>
         <div className="flex justify-end mr-4">
           
