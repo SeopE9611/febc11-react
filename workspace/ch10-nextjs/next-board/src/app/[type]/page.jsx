@@ -10,6 +10,15 @@ async function fetchPosts(type){
   return await res.json();
 }
 
+// metadata 객체를 반환하는 함수
+export async function generateMetadata({ params }) {
+  const { type } = await params;
+  return {
+    title: `${type} 게시물 목록`,
+    description: '게시물 목록 페이지입니다.'
+  };
+}
+
 export default async function Page({ params }) {
   // const { type } = params; // Next.js 14
   // Next.js 15에서 params가 Promise로 전달됨
@@ -38,7 +47,7 @@ export default async function Page({ params }) {
             <button type="submit" className="bg-orange-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded">검색</button>
           </form>
 
-          <Link href="/info/new" className="bg-orange-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded">글작성</Link>
+          <Link href={`/${type}/new`} className="bg-orange-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded">글작성</Link>
         </div>
         <section className="pt-10">
           <table className="border-collapse w-full table-fixed">
